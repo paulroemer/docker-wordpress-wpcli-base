@@ -18,3 +18,8 @@ RUN cd /usr/src/wordpress/wp-content/plugins/ &&\
     unzip /tmp/advanced-custom-fields.zip &&\
     unzip /tmp/advanced-code-editor.zip &&\
     unzip /tmp/revisr.zip
+
+# register self signed CA
+COPY kreativzone_cachaincert.pem /etc/ssl/certs/kreativzone_cachaincert.pem
+RUN git config --system http.sslCAInfo /etc/ssl/certs/kreativzone_cachaincert.pem
+
