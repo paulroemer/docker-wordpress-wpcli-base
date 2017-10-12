@@ -10,16 +10,12 @@ RUN apt-get update &&\
     apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Load and install plugins
-RUN curl -o /tmp/advanced-custom-fields.zip https://downloads.wordpress.org/plugin/advanced-custom-fields.4.4.5.zip &&\
-    curl -o /tmp/advanced-code-editor.zip https://downloads.wordpress.org/plugin/advanced-code-editor.2.2.6.zip &&\
+RUN curl -o /tmp/advanced-custom-fields.zip https://downloads.wordpress.org/plugin/advanced-custom-fields.4.4.12.zip &&\
+    curl -o /tmp/advanced-code-editor.zip https://downloads.wordpress.org/plugin/advanced-code-editor.2.2.7.zip &&\
     curl -o /tmp/revisr.zip https://downloads.wordpress.org/plugin/revisr.zip
 
 RUN cd /usr/src/wordpress/wp-content/plugins/ &&\
     unzip /tmp/advanced-custom-fields.zip &&\
     unzip /tmp/advanced-code-editor.zip &&\
     unzip /tmp/revisr.zip
-
-# register self signed CA
-COPY kreativzone_cachaincert.pem /etc/ssl/certs/kreativzone_cachaincert.pem
-RUN git config --system http.sslCAInfo /etc/ssl/certs/kreativzone_cachaincert.pem
 
